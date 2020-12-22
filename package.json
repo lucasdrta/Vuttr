@@ -6,6 +6,9 @@
   "author": "Lucas Duarte <lucasdrtaraujo@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "start": "yarn build && node dist/index.js",
+    "dev": "ts-node-dev --ignore-watch node_modules src/index.ts",
     "test": "yarn test:unit && yarn test:functional",
     "test:functional": "jest --projects ./test --runInBand",
     "test:unit": "jest"
