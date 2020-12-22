@@ -6,7 +6,9 @@
   "author": "Lucas Duarte <lucasdrtaraujo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "yarn test:unit && yarn test:functional",
+    "test:functional": "jest --projects ./test --runInBand",
+    "test:unit": "jest"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
