@@ -5,6 +5,9 @@
   "repository": "https://github.com/lucasdrta/vuttr.git",
   "author": "Lucas Duarte <lucasdrtaraujo@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.19",
     "@types/supertest": "^2.0.10",
