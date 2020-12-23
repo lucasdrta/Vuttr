@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Application } from 'express';
 const app = express();
 
 export class ServerSetup {
@@ -21,5 +21,9 @@ export class ServerSetup {
     app.listen(this.port, () => {
       console.info(`Server running at http://localhost:${this.port}`);
     });
+  }
+
+  public getApp(): Application {
+    return app;
   }
 }
