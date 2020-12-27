@@ -1,0 +1,13 @@
+
+{
+  "App": {
+    "port": 3000,
+    "database": {
+      "mongoURL": "mongodb://localhost:27017/never-forget"
+    },
+    "auth": {
+      "key": "some-key",
+      "tokenExpiresIn": "200000000"
+    }
+  }
+}
