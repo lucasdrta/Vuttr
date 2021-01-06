@@ -1,5 +1,6 @@
 import { ServerSetup } from '../../src/server';
 import request from 'supertest';
+import { Tool } from '../../src/models/tools';
 
 let server: ServerSetup;
 
@@ -7,24 +8,21 @@ describe('Tools functional tests', () => {
   beforeAll(async () => {
     server = new ServerSetup();
     await server.init();
+
+    await Tool.deleteMany();
+  });
+
+  afterAll(async () => {
+    await server.close();
   });
 
   describe('When create a tool', () => {
     it('Should create a tool with success', async () => {
       const tool = {
-        title: 'hotel',
-        link: 'https://github.com/typicode/hotel',
-        description:
-          'Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.',
-        tags: [
-          'node',
-          'organizing',
-          'webapps',
-          'domain',
-          'developer',
-          'https',
-          'proxy',
-        ],
+        title: 'Some Title',
+        link: 'https://somelink.com',
+        description: 'Any description',
+        tags: ['node', 'Test', 'Jest'],
       };
 
       const resposne = await request(server.getApp()).post('/tools').send(tool);
