@@ -39,9 +39,9 @@ export class ToolsController {
       const { id } = req.params;
       await Tool.findByIdAndRemove(id);
 
-      res.status(200).send();
+      res.status(204).send();
     } catch (error) {
-      res.status(204).send({
+      res.status(400).send({
         code: 400,
         message: error.message,
       });
