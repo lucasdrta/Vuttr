@@ -3,7 +3,7 @@
   "App": {
     "port": 3000,
     "database": {
-      "mongoURL": "mongodb://localhost:27017/never-forget"
+      "mongoURL": "mongodb+srv://lucasdrta:yck2Pf5gQUEu0g8B@never-forget.sxprn.mongodb.net/never-forget-api?retryWrites=true&w=majority"
     },
     "auth": {
       "key": "some-key",
