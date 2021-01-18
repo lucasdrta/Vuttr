@@ -4,7 +4,14 @@ import { Tool } from '../models/tools';
 export class ToolsController {
   public async list(req: Request, res: Response): Promise<void> {
     try {
-      const tools = await Tool.find();
+      const tags = req.query;
+
+      if (!tags) {
+        const tools = await Tool.find();
+        res.status(200).send(tools);
+      }
+
+      const tools = await Tool.find(tags);
       res.status(200).send(tools);
     } catch (error) {
       res.status(400).send({
