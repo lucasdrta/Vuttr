@@ -7,11 +7,11 @@ export class ToolsController {
       const tags = req.query;
 
       if (!tags) {
-        const tools = await Tool.find();
+        const tools = await Tool.find({ user: req.decoded?.id });
         res.status(200).send(tools);
       }
 
-      const tools = await Tool.find(tags);
+      const tools = await Tool.find({ user: req.decoded?.id }).find(tags);
       res.status(200).send(tools);
     } catch (error) {
       res.status(400).send({
