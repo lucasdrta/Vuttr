@@ -41,7 +41,7 @@ export class ToolsController {
 
       res.status(200).send();
     } catch (error) {
-      res.status(400).send({
+      res.status(204).send({
         code: 400,
         message: error.message,
       });
