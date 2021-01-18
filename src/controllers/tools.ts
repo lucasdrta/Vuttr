@@ -26,4 +26,18 @@ export class ToolsController {
       });
     }
   }
+
+  public async delete(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      await Tool.findByIdAndRemove(id);
+
+      res.status(200).send();
+    } catch (error) {
+      res.status(400).send({
+        code: 400,
+        message: error.message,
+      });
+    }
+  }
 }
