@@ -27,7 +27,12 @@ describe('Tools functional tests', () => {
       const resposne = await request(server.getApp()).post('/users').send(user);
 
       expect(resposne.status).toBe(201);
-      expect(resposne.body).toEqual(expect.objectContaining(user));
+      expect(resposne.body).toEqual(
+        expect.objectContaining({
+          ...user,
+          ...{ password: expect.any(String) },
+        })
+      );
     });
 
     it('should return a error when email already exists in database', async () => {
