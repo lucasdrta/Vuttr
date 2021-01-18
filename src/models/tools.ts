@@ -6,6 +6,7 @@ export interface ITool {
   link: string;
   description: string;
   tags: string[];
+  user: string;
 }
 
 interface ToolModel extends Omit<ITool, '_id'>, Document {}
@@ -31,6 +32,11 @@ const schema = new Schema(
         trim: true,
       },
     ],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
   },
   {
     toJSON: {

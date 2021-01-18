@@ -23,7 +23,10 @@ export class ToolsController {
 
   public async create(req: Request, res: Response): Promise<void> {
     try {
-      const tool = new Tool(req.body);
+      const tool = new Tool({
+        ...req.body,
+        ...{ user: req.decoded?.id },
+      });
       const result = await tool.save();
       res.status(201).send(result);
     } catch (error) {
