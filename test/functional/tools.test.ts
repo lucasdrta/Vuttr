@@ -61,7 +61,7 @@ describe('Tools functional tests', () => {
 
       const response = await request(server.getApp()).delete(`/tools/${tool.id}`);
 
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(204);
     });
 
     it('should return error when tool id not exists', async () => {
@@ -74,4 +74,4 @@ describe('Tools functional tests', () => {
       });
     })
   }
-})
+});
