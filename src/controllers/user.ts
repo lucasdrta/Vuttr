@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { User } from '../models/user';
+import AuthService from '../services/auth';
 
 export class UserController {
   public async create(req: Request, res: Response): Promise<void> {
@@ -13,5 +14,30 @@ export class UserController {
         message: error.message,
       });
     }
+  }
+
+  public async authenticate(
+    req: Request,
+    res: Response
+  ): Promise<void | undefined> {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      res.status(401).send({
+        code: 401,
+        message: 'User not found',
+      });
+    }
+
+    if (!(await AuthService.comparePasswords(password, user.password))) {
+      res.status(401).send({
+        code: 401,
+        message: 'Password does not match!',
+      });
+    }
+
+    const token = AuthService.generateToken(user.toJSON());
+    res.status(200).send({ token });
   }
 }
